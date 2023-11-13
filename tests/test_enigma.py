@@ -1,12 +1,16 @@
 import unittest
 from source.enigma import Enigma  # Подставьте правильный путь к вашему классу
 
+
 class TestEnigma(unittest.TestCase):
     def setUp(self):
         # Подготовка данных для тестов
-        self.rotor_a = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
-        self.rotor_b = ['G', 'Q', 'W', 'F', 'M', 'D', 'A', 'Z', 'T', 'X', 'Y', 'S', 'E', 'U', 'V', 'P', 'B', 'R', 'L', 'I', 'N', 'O', 'C', 'J', 'K', 'H']
-        self.rotor_c = ['R', 'Y', 'O', 'T', 'Z', 'P', 'K', 'S', 'Q', 'W', 'G', 'V', 'X', 'U', 'C', 'F', 'I', 'A', 'H', 'D', 'N', 'L', 'J', 'M', 'B', 'E']
+        self.rotor_a = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S',
+                        'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
+        self.rotor_b = ['G', 'Q', 'W', 'F', 'M', 'D', 'A', 'Z', 'T', 'X', 'Y', 'S', 'E', 'U', 'V', 'P', 'B', 'R', 'L',
+                        'I', 'N', 'O', 'C', 'J', 'K', 'H']
+        self.rotor_c = ['R', 'Y', 'O', 'T', 'Z', 'P', 'K', 'S', 'Q', 'W', 'G', 'V', 'X', 'U', 'C', 'F', 'I', 'A', 'H',
+                        'D', 'N', 'L', 'J', 'M', 'B', 'E']
 
         self.enigma = Enigma(self.rotor_a, self.rotor_b, self.rotor_c)
 
@@ -34,6 +38,7 @@ class TestEnigma(unittest.TestCase):
         # Проверка декодирования строки
         decoded_string = self.enigma.convert(encoded_string, reverse=True)
         self.assertEqual(decoded_string, 'HELLO')
+
 
 if __name__ == '__main__':
     unittest.main()
