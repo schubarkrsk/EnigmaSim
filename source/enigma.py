@@ -102,7 +102,7 @@ class Enigma:
 
 
         Args:
-            input_char (str): Буква, которая будет пропущена через роторы.
+            input_char (str): Буква, которая будет пропущена через роторы
             reverse (bool, optional): Если True - будет произведено дешифрование
 
         Returns:
