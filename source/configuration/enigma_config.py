@@ -13,10 +13,10 @@ def read_rotor(rotor_number: int) -> list[Any] | str:
     """
     if not (1 <= rotor_number <= 5):
         return []
-    _rotor_file_name = f"rotor{rotor_number}.txt"
-    _rotor_path = Path(Path.cwd(), "configuration", _rotor_file_name)
-    _rotor_config = []
-    with open(_rotor_path, "r") as rotor:
-        _rotor_config = rotor.read().strip()
+    rotor_file_name = f"rotor{rotor_number}.txt"
+    rotor_path = Path(Path.cwd(), "configuration", rotor_file_name)
+    rotor_config = []
+    with open(rotor_path, "r") as rotor:
+        rotor_config = rotor.read().strip()
 
-    return _rotor_config
+    return rotor_config

@@ -17,11 +17,11 @@ if __name__ == "__main__":
               "[4] - ТЕКУЩИЙ СТАТУС ЭНИГМЫ\n"
               "[НЕ цифра] - ВЫХОД")
         try:
-            answ = int(input(">>>"))
+            answer = int(input(">>>"))
         except Exception:
             raise SystemExit
 
-        match answ:
+        match answer:
             case 1:
                 message = input("ТЕКСТ НА АНГЛИЙСКОМ БЕЗ ПРОБЕЛОВ >>> ").upper()
                 print(enigma.convert(message, reverse=False))

@@ -22,9 +22,9 @@ class Enigma:
         convert(input_string: str, reverse: bool): Зашифровать или дешифровать сообщение
     """
 
-    ra_pos = 1
-    rb_pos = 1
-    rc_pos = 1
+    rotor_a_pos = 1
+    rotor_b_pos = 1
+    rotor_c_pos = 1
 
     def __init__(self, rotor_a: list, rotor_b: list, rotor_c: list, plugs=None):
         if plugs is None:
@@ -37,24 +37,24 @@ class Enigma:
     def state(self):
         """Отображает текущее состояние Энигмы."""
         print(f"КОНФИГУРАЦИЯ ЭНИГМЫ\n"
-              f"ПОЗИЦИИ РОТОРОВ A[{self.ra_pos}] B[{self.rb_pos}] C[{self.rc_pos}]\n"
+              f"ПОЗИЦИИ РОТОРОВ A[{self.rotor_a_pos}] B[{self.rotor_b_pos}] C[{self.rotor_c_pos}]\n"
               f"РОТОР A: {self.rotor_a}\n"
               f"РОТОР B: {self.rotor_b}\n"
               f"РОТОР C: {self.rotor_c}\n")
 
     def increment_rotors(self):
         """Увеличение заначения позиции роторов."""
-        self.ra_pos += 1
-        if self.ra_pos > 26:
-            self.ra_pos = 1
+        self.rotor_a_pos += 1
+        if self.rotor_a_pos > 26:
+            self.rotor_a_pos = 1
 
-            self.rb_pos += 1
-            if self.rb_pos > 26:
-                self.rb_pos = 1
+            self.rotor_b_pos += 1
+            if self.rotor_b_pos > 26:
+                self.rotor_b_pos = 1
 
-                self.rc_pos += 1
-                if self.rc_pos > 26:
-                    self.rc_pos = 1
+                self.rotor_c_pos += 1
+                if self.rotor_c_pos > 26:
+                    self.rotor_c_pos = 1
 
     def get_rotors_pos(self) -> list:
         """Получение позиций роторов.
@@ -62,7 +62,7 @@ class Enigma:
         Returns:
             list: список содержащий текущие позиции роторов
         """
-        return [self.ra_pos, self.rb_pos, self.rc_pos]
+        return [self.rotor_a_pos, self.rotor_b_pos, self.rotor_c_pos]
 
     def change_rotors_pos(self, ra: int, rb: int, rc: int):
         """Изменить позиции роторов
@@ -76,9 +76,9 @@ class Enigma:
                 str: Информация о новых позициях роторов
             """
         if (1 <= ra <= 26) and (1 <= rb < 26) and (1 <= rc <= 26):
-            self.ra_pos = ra
-            self.rb_pos = rb
-            self.rc_pos = rc
+            self.rotor_a_pos = ra
+            self.rotor_b_pos = rb
+            self.rotor_c_pos = rc
             new_config = self.get_rotors_pos()
             print(f"Новая конфигурация роторов: А[{new_config[0]}] B[{new_config[1]}] C[{new_config[2]}]")
         else:
@@ -108,9 +108,9 @@ class Enigma:
         Returns:
             dict: Словарь содержащий букву и ее индекс на последнем роторе
         """
-        _ra = self.rotor_a[self.ra_pos:] + self.rotor_a[:self.ra_pos]
-        _rb = self.rotor_b[self.rb_pos:] + self.rotor_b[:self.rb_pos]
-        _rc = self.rotor_c[self.rc_pos:] + self.rotor_c[:self.rc_pos]
+        rotor_a_shift = self.rotor_a[self.rotor_a_pos:] + self.rotor_a[:self.rotor_a_pos]
+        rotor_b_shift = self.rotor_b[self.rotor_b_pos:] + self.rotor_b[:self.rotor_b_pos]
+        rotor_c_shift = self.rotor_c[self.rotor_c_pos:] + self.rotor_c[:self.rotor_c_pos]
 
         result = {
             "char": "",
@@ -119,21 +119,21 @@ class Enigma:
 
         if not reverse:
             # Находим индекс в роторе A, с учетом позиции ротора
-            ra_i = (_ra.index(input_char) - self.ra_pos) % 26
-            rb_i = (_rb.index(_ra[ra_i]) - self.rb_pos) % 26
-            rc_i = (_rc.index(_rb[rb_i]) - self.rc_pos) % 26
+            rotor_a_index = (rotor_a_shift.index(input_char) - self.rotor_a_pos) % 26
+            rotor_b_index = (rotor_b_shift.index(rotor_a_shift[rotor_a_index]) - self.rotor_b_pos) % 26
+            rotor_c_index = (rotor_c_shift.index(rotor_b_shift[rotor_b_index]) - self.rotor_c_pos) % 26
 
-            result["char"] = _rc[rc_i]
-            result["index"] = rc_i
+            result["char"] = rotor_c_shift[rotor_c_index]
+            result["index"] = rotor_c_index
 
         if reverse:
             # Для декодирования нужно пройти обратный путь по роторам
-            rc_i = (_rc.index(input_char) + self.rc_pos) % 26
-            rb_i = (_rb.index(_rc[rc_i]) + self.rb_pos) % 26
-            ra_i = (_ra.index(_rb[rb_i]) + self.ra_pos) % 26
+            rotor_c_index = (rotor_c_shift.index(input_char) + self.rotor_c_pos) % 26
+            rotor_b_index = (rotor_b_shift.index(rotor_c_shift[rotor_c_index]) + self.rotor_b_pos) % 26
+            rotor_a_index = (rotor_a_shift.index(rotor_b_shift[rotor_b_index]) + self.rotor_a_pos) % 26
 
-            result["char"] = _ra[ra_i]
-            result["index"] = ra_i
+            result["char"] = rotor_a_shift[rotor_a_index]
+            result["index"] = rotor_a_index
 
         return result
 
