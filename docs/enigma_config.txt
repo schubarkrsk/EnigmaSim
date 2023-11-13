@@ -1,0 +1,21 @@
+Help on module enigma_config:
+
+NAME
+    enigma_config
+
+FUNCTIONS
+    read_rotor(rotor_number: int) -> list[typing.Any] | str
+        Прочитать конфигурацию ротора
+
+        Args:
+            rotor_number (int): номер ротора для считывания
+
+        Returns:
+            list: Список содержащий порядок букв на роторе
+
+DATA
+    List = typing.List
+        A generic version of list.
+
+FILE
+source/configuration/enigma_config.py
