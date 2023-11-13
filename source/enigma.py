@@ -85,7 +85,7 @@ class Enigma:
             print("Позиции роторов переданы некорректно. Конфигурация НЕ изменена")
 
     @staticmethod
-    def get_rotor_letter(rotor:list, r_pos:int):
+    def get_rotor_letter(rotor: list, r_pos: int):
         """Получить букву на роторе при определенной позиции.
 
         Args:
@@ -95,9 +95,9 @@ class Enigma:
         Returns:
             str: Буква стоящая на позици r_pos в роторе rotor
         """
-        return rotor[r_pos-1]
+        return rotor[r_pos - 1]
 
-    def get_rotors_connection(self, input_char: str, reverse=False)->dict:
+    def get_rotors_connection(self, input_char: str, reverse=False) -> dict:
         """Получить букву после прохождения через блок роторов.
 
 
@@ -137,7 +137,7 @@ class Enigma:
 
         return result
 
-    def convert(self, input_string:str, reverse=False)->str:
+    def convert(self, input_string: str, reverse=False) -> str:
         """Зашифровать или дешифровать строку с помощью Энигмы
 
         Args:
@@ -152,5 +152,3 @@ class Enigma:
             converted_string += self.get_rotors_connection(letter, reverse=reverse)["char"]
             self.increment_rotors()
         return converted_string
-
-
