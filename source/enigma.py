@@ -12,11 +12,11 @@ class Engima:
         self.plugs = plugs
 
     def state(self):
-        print(f"Enigma configuration\n"
-              f"ROTORS A[{self.ra_pos}] B[{self.rb_pos}] C[{self.rc_pos}]\n"
-              f"Rotor A pattern: {self.rotor_a}\n"
-              f"Rotor B pattern: {self.rotor_b}\n"
-              f"Rotor C pattern: {self.rotor_c}\n")
+        print(f"КОНФИГУРАЦИЯ ЭНИГМЫ\n"
+              f"ПОЗИЦИИ РОТОРОВ A[{self.ra_pos}] B[{self.rb_pos}] C[{self.rc_pos}]\n"
+              f"РОТОР A: {self.rotor_a}\n"
+              f"РОТОР B: {self.rotor_b}\n"
+              f"РОТОР C: {self.rotor_c}\n")
 
     def increment_rotors(self):
         self.ra_pos += 1
@@ -47,35 +47,6 @@ class Engima:
     @staticmethod
     def get_rotor_letter(rotor:list, r_pos):
         return rotor[r_pos-1]
-
-    # def get_rotors_connection(self, input_index:int, reverse=False):
-    #     _ra = self.rotor_a[self.ra_pos:] + self.rotor_a[:self.ra_pos]
-    #     _rb = self.rotor_b[self.rb_pos:] + self.rotor_b[:self.rb_pos]
-    #     _rc = self.rotor_c[self.rc_pos:] + self.rotor_c[:self.rc_pos]
-    #
-    #     result = {
-    #         "char":"",
-    #         "index":0,
-    #     }
-    #     if not reverse:
-    #         # Используем переменные ra_i, rb_i, rc_i для корректного поиска индексов
-    #         ra_i = (_ra.index(input_index) + self.ra_pos) % 26
-    #         rb_i = (_rb.index(ra_i) + self.rb_pos) % 26
-    #         rc_i = (_rc.index(rb_i) + self.rc_pos) % 26
-    #
-    #         result["char"] = chr(rc_i + 65)  # Переводим индекс в символ ASCII (A=0, B=1, ...)
-    #         result["index"] = rc_i
-    #
-    #     if reverse:
-    #         # Для декодирования необходимо пройти обратный путь по роторам
-    #         rc_i = (_rc.index(input_index) - self.rc_pos) % 26
-    #         rb_i = (_rb.index(rc_i) - self.rb_pos) % 26
-    #         ra_i = (_ra.index(rb_i) - self.ra_pos) % 26
-    #
-    #         result["char"] = chr(ra_i + 65)  # Переводим индекс в символ ASCII (A=0, B=1, ...)
-    #         result["index"] = ra_i
-    #
-    #     return result
 
     def get_rotors_connection(self, input_char: str, reverse=False):
         # _ra = self.rotor_a

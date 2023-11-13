@@ -10,11 +10,11 @@ if __name__ == "__main__":
     enigma.state()
 
     while True:
-        print("[1] - encode message\n"
-              "[2] - decode message\n"
-              "[3] - set rotors position\n"
-              "[4] - enigma state info\n"
-              "[Any letter key] - Quit")
+        print("[1] - ЗАКОДИРОВАТЬ\n"
+              "[2] - РАСКОДИРОВАТЬ\n"
+              "[3] - СМЕНИТЬ ПОЗИЦИЮ РОТОРА\n"
+              "[4] - ТЕКУЩИЙ СТАТУС ЭНИГМЫ\n"
+              "[НЕ цифра] - ВЫХОД")
         try:
             answ = int(input(">>>"))
         except Exception:
@@ -22,17 +22,23 @@ if __name__ == "__main__":
 
         match answ:
             case 1:
-                message = input("YOUR MESSAGE (WITHOUT SPACES) >>> ").upper()
+                message = input("ТЕКСТ НА АНГЛИЙСКОМ БЕЗ ПРОБЕЛОВ >>> ").upper()
                 print(enigma.convert(message, reverse=False))
+
             case 2:
-                message = input("YOUR MESSAGE (WITHOUT SPACES) >>> ").upper()
+                message = input("ТЕКСТ НА АНГЛИЙСКОМ БЕЗ ПРОБЕЛОВ >>> ").upper()
                 print(enigma.convert(message, reverse=True))
+
             case 3:
                 rotors_pos = enigma.get_rotors_pos()
-                print(f"CURRENT ROTORS POS [{rotors_pos[0]}, {rotors_pos[1]}, {rotors_pos[2]}]")
-                a_pos = int(input("Position for A rotor >>> "))
-                b_pos = int(input("Position for B rotor >>> "))
-                c_pos = int(input("Position for C rotor >>> "))
+                print(f"ТЕКУЩИЕ ПОЗИЦИИ РОТОРОВ [A:{rotors_pos[0]}, B:{rotors_pos[1]}, C:{rotors_pos[2]}]")
+                a_pos = int(input("ПОЗИЦИЯ РОТОРА A >>> "))
+                b_pos = int(input("ПОЗИЦИЯ РОТОРА B >>> "))
+                c_pos = int(input("ПОЗИЦИЯ РОТОРА C >>> "))
                 enigma.change_rotors_pos(a_pos, b_pos, c_pos)
             case 4:
                 enigma.state()
+
+        rotors_pos = enigma.get_rotors_pos()
+        print(f"ПОЗИЦИИ РОТОРОВ ПОСЛЕ ОПЕРАЦИИ [A:{rotors_pos[0]}, B:{rotors_pos[1]}, C:{rotors_pos[2]}]")
+        print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
