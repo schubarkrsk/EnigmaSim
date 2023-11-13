@@ -1,5 +1,6 @@
 from configuration import enigma_config
 from enigma import Enigma
+import re
 
 if __name__ == "__main__":
     rotors = []
@@ -27,7 +28,11 @@ if __name__ == "__main__":
 
             case 2:
                 message = input("ТЕКСТ НА АНГЛИЙСКОМ БЕЗ ПРОБЕЛОВ >>> ").upper()
-                print(enigma.convert(message, reverse=True))
+                decoded_text = enigma.convert(message, reverse=True)
+                # words = re.findall('[A-Z]+[a-z]*', decoded_text)
+                # result = ' '.join(words) # TODO : make words separating
+                print(decoded_text)
+
 
             case 3:
                 rotors_pos = enigma.get_rotors_pos()
