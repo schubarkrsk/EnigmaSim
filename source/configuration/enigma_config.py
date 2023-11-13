@@ -1,7 +1,8 @@
 from pathlib import Path
+from typing import List, Any
 
 
-def read_rotor(rotor_number: int) -> list:
+def read_rotor(rotor_number: int) -> list[Any] | str:
     """Прочитать конфигурацию ротора
 
     Args:
