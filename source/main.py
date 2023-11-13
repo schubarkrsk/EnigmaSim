@@ -1,6 +1,6 @@
 from configuration import enigma_config
 from enigma import Enigma
-import re
+# import re
 
 if __name__ == "__main__":
     rotors = []
