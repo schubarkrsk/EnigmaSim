@@ -1,12 +1,12 @@
 from configuration import enigma_config
-from enigma import Engima
+from enigma import Enigma
 
 if __name__ == "__main__":
     rotors = []
     for rotor_number in range(1, 4, 1):
         rotors.append(enigma_config.read_rotor(rotor_number))
 
-    enigma = Engima(rotors[0], rotors[1], rotors[2])
+    enigma = Enigma(rotors[0], rotors[1], rotors[2])
     enigma.state()
 
     while True:

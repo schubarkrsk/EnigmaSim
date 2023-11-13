@@ -1,4 +1,4 @@
-class Engima:
+class Enigma:
     """Класс эмуляции шифровальной машины Энигма
     
     Args:
