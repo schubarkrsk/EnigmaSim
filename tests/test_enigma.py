@@ -22,12 +22,11 @@ class TestEnigma(unittest.TestCase):
     def test_min_max_change_rotor(self):
         # Проверка диапазона установки ротора
         prev_pos = self.enigma.get_rotors_pos()
-        self.enigma.change_rotors_pos(27,27,27)
+        self.enigma.change_rotors_pos(27, 27, 27)
         self.assertEqual(self.enigma.get_rotors_pos(), prev_pos)
 
         self.enigma.change_rotors_pos(0, 0, 0)
         self.assertEqual(self.enigma.get_rotors_pos(), prev_pos)
-
 
     def test_change_rotors_pos(self):
         # Проверка изменения позиций роторов
@@ -37,7 +36,7 @@ class TestEnigma(unittest.TestCase):
 
     def test_get_rotor_letter(self):
         # Проверка получения буквы из ротора
-        self.enigma.change_rotors_pos(1,1,1)
+        self.enigma.change_rotors_pos(1, 1, 1)
         letter = self.enigma.get_rotor_letter(self.rotor_a, 3)
         self.assertEqual(letter, 'M')
 
