@@ -19,6 +19,16 @@ class TestEnigma(unittest.TestCase):
         positions = self.enigma.get_rotors_pos()
         self.assertEqual(positions, [1, 1, 1])
 
+    def test_min_max_change_rotor(self):
+        # Проверка диапазона установки ротора
+        prev_pos = self.enigma.get_rotors_pos()
+        self.enigma.change_rotors_pos(27,27,27)
+        self.assertEqual(self.enigma.get_rotors_pos(), prev_pos)
+
+        self.enigma.change_rotors_pos(0, 0, 0)
+        self.assertEqual(self.enigma.get_rotors_pos(), prev_pos)
+
+
     def test_change_rotors_pos(self):
         # Проверка изменения позиций роторов
         self.enigma.change_rotors_pos(5, 10, 15)
