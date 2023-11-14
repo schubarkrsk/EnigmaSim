@@ -1,5 +1,5 @@
 import unittest
-from source.enigma import Enigma
+from enigmaemu.enigma import Enigma
 
 
 class TestEnigma(unittest.TestCase):
