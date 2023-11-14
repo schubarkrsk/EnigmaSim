@@ -1,5 +1,5 @@
 import unittest
-from source.enigma import Enigma  # Подставьте правильный путь к вашему классу
+from source.enigma import Enigma
 
 
 class TestEnigma(unittest.TestCase):
