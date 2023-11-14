@@ -40,7 +40,8 @@ if __name__ == "__main__":
                 a_pos = int(input("ПОЗИЦИЯ РОТОРА A >>> "))
                 b_pos = int(input("ПОЗИЦИЯ РОТОРА B >>> "))
                 c_pos = int(input("ПОЗИЦИЯ РОТОРА C >>> "))
-                enigma.change_rotors_pos(a_pos, b_pos, c_pos)
+                if 1 <= (a_pos or b_pos or c_pos) <= 26:
+                    enigma.change_rotors_pos(a_pos, b_pos, c_pos)
             case 4:
                 enigma.state()
 
