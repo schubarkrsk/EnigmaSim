@@ -1,5 +1,6 @@
 from configuration import enigma_config
 from enigma import Enigma
+
 # import re
 
 if __name__ == "__main__":
@@ -32,7 +33,6 @@ if __name__ == "__main__":
                 # words = re.findall('[A-Z]+[a-z]*', decoded_text)
                 # result = ' '.join(words) # TODO : make words separating
                 print(decoded_text)
-
 
             case 3:
                 rotors_pos = enigma.get_rotors_pos()
